@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import TodoItem from './TodoItem'
-import Test from './Test'
 import './style.css'
 
 class TodoList extends Component {
@@ -16,7 +15,6 @@ class TodoList extends Component {
     this.handleItemDelete = this.handleItemDelete.bind(this)
   }
   render () {
-    console.log('render')
     return (
       <Fragment>
         {/* 注释的写法 */}
@@ -30,13 +28,13 @@ class TodoList extends Component {
             className="input"
             value={this.state.inputValue}
             onChange={this.handleInputChange}
+            ref={(input) => {this.input = input}}
           />
           <button onClick={this.handleBtnClick}>提交</button>
         </div>
-        <ul>
+        <ul ref={(ul) => {this.ul = ul}}>
           {this.getTodoItem()}
         </ul>
-        <Test content={this.state.inputValue} />
       </Fragment>
     )
   }
@@ -54,8 +52,9 @@ class TodoList extends Component {
     })
   }
 
-  handleInputChange (e) {
-    const value = e.target.value
+  handleInputChange () {
+    const value = this.input.value
+    // const value = e.target.value
     this.setState(() => ({
       inputValue: value
     }))
@@ -68,10 +67,14 @@ class TodoList extends Component {
   }
 
   handleBtnClick () {
+    // setState是异步的
     this.setState((prevState) => ({
       list: [...prevState.list, prevState.inputValue],
       inputValue: ''
-    }))
+    }), () => {
+      console.log(this.ul.querySelectorAll('div').length)
+    })
+    
     // this.setState({
     //   list: [...this.state.list, this.state.inputValue],
     //   inputValue: ''
