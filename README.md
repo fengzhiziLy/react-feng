@@ -59,8 +59,14 @@
 ['div', {id: 'abc'}, ['span', {}, 'fengzhizi']]
 ```
 7. 比较原始虚拟DOM和新的虚拟DOM，区别是span中的内容
+  Diff, diffrence
 8. 直接操作DOM，改变span中的内容
 
 优点：
 1. 性能提升
 2. 使得跨端应用得以实现
+
+### Diff算法
+
+同层比较
+![Diff](/src/images/diff.png)

@@ -9,12 +9,12 @@ class TodoItem extends Component {
   render () {
     const { content, test } = this.props
     // jsx => createElement -> 虚拟DOM (js对象) => 真实的DOM
-    // return (
-    //   <div onClick={this.handleClick}>
-    //     {test} - {content}
-    //   </div>
-    // )
-    return React.createElement('div', {}, React.createElement('span', {}, 'item'))
+    return (
+      <div onClick={this.handleClick}>
+        {test} - {content}
+      </div>
+    )
+    // return React.createElement('div', {}, React.createElement('span', {}, 'item'))
   }
   handleClick () {
     const { deleteItem, index } = this.props
