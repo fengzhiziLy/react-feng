@@ -70,3 +70,75 @@
 
 同层比较
 ![Diff](/src/images/diff.png)
+
+### 生命周期函数
+
+生命周期函数指在某一个时刻组件会自动调用执行的函数
+
+```js
+  // 当组件的state或者props发生改变的时候，render函数就会重新执行
+  // 在组件即将被挂载到页面的时刻自动执行
+  componentWillMount () {
+    console.log('componentWillMount')
+  } 
+
+  // 组件在挂载到页面上自动执行
+  componentDidMount () {
+    console.log('componentDidMount')
+  }
+
+  // 组件被更新之前，会自动被执行
+  shouldComponentUpdate () {
+    console.log('shouldComponentUpdate')
+    return true
+  }
+
+  // 组件被更新之前，会自动执行，但是在shouldComponentUpdate之后执行
+  // 如果shouldComponentUpdate返回true才执行，如果返回false就不执行
+  componentWillUpdate () {
+    console.log('componentWillUpdate')
+  }
+
+  // 组件更新完成之后会被执行
+  componentDidUpdate () {
+    console.log('componentDidUpdate')
+  }
+  
+  // 当一个组件从父组件接受参数
+  // 只要父组件的render函数被重新执行，子组件的这个生命周期函数就被执行
+  // 如果这个组件第一次存在于父组件中，不会被执行
+  // 如果这个组件之前已经存在于父组件中，才会被执行
+  componentWillReceiveProps () {
+    console.log('child componentWillReceiveProps')
+  }
+
+  // 当这个组件即将被从页面中剔除的时候，才会被执行
+  componentWillUnmount () {
+    console.log('componentWillUnmount')
+  }
+```
+
+#### 一些性能优化的点
+
+1. 避免无谓组件render函数的运行
+
+```js
+shouldComponentUpdate(nextProps, nextState) {
+  if (nextProps.content !== this.props.content) {
+    return true
+  } else {
+    return false
+  }
+}
+```
+
+2. 
+在 constructor中绑定，作用域的绑定只会执行一次，避免子组件的无谓渲染
+
+```js
+this.handleClick = this.hanldeClick.bind(this)
+```
+
+3. setState是异步的，可以将多次数据改变结合成一次来做，这样减低虚拟DOM的比对频率
+
+4. 虚拟DOM，同层比对，还有key值
