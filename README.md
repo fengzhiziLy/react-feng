@@ -142,3 +142,19 @@ this.handleClick = this.hanldeClick.bind(this)
 3. setState是异步的，可以将多次数据改变结合成一次来做，这样减低虚拟DOM的比对频率
 
 4. 虚拟DOM，同层比对，还有key值
+
+
+### redux
+
+![如图](/images/redux.png)
+
+![redux](https://camo.githubusercontent.com/5aba89b6daab934631adffc1f301d17bb273268b/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6d656469612d702e736c69642e65732f75706c6f6164732f3336343831322f696d616765732f323438343535322f415243482d5265647578322d7265616c2e676966)
+
+state(状态)---> 状态存在于单一的对象中
+action ---> 就是view发出的通知，表示state应该要发生改变了
+    描述当前发生的事情，改变state的唯一方法，就是使用action
+    它会运输数据到store
+store --> 存储数据的公共区域，整个应用只能有一个store
+reducer ---> store收到action后，必须给出一个新的state，这样view才会发生变化，这种state的计算过程就是reducer
+react components --> 组件
+action creators --> 获取数据的这句话，也就是说发出的通知
