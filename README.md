@@ -157,8 +157,10 @@ action ---> 就是view发出的通知，表示state应该要发生改变了
     它会运输数据到store
 
 store --> 存储数据的公共区域，整个应用只能有一个store
+    只有store能改变自己的内容
 
 reducer ---> store收到action后，必须给出一个新的state，这样view才会发生变化，这种state的计算过程就是reducer
+  reducer必须是纯函数
 
 react components --> 组件
 
