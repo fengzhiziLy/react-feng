@@ -165,3 +165,15 @@ reducer ---> store收到action后，必须给出一个新的state，这样view�
 react components --> 组件
 
 action creators --> 获取数据的这句话，也就是说发出的通知
+
+### redux中间件
+
+对dispatch的升级,会根据参数的不同执行不同的操作
+
+redux-thunk
+
+redux-log
+
+redux-saga
+
+![如图](/images/redux-data-flow.png)
